@@ -1,0 +1,76 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+	<!-- Copyright © 2020 Accenture. All rights reserved  -->
+	<!-- wrap CMTD parameters and handle advance mode parent related parameters -->
+    <aura:attribute name="Base_Record" type="String" access="global" />
+    <aura:attribute name="Related_Record_ID" type="String" access="global" />
+    <aura:attribute name="relatedRecordId" type="String" access="global" />
+    <aura:attribute name="Object_API_Name" type="String" access="global" />
+    <aura:attribute name="Related_List_Name" type="String" access="global" />
+    <aura:attribute name="Parent_Field" type="String" access="global" />
+    <aura:attribute name="Records_Display_Type" type="String" access="global" />
+    <aura:attribute name="Fields_Layout_Type" type="String" access="global" />
+    <aura:attribute name="Filter" type="String" access="global" />
+    <aura:attribute name="Sort" type="String" access="global" />
+    <aura:attribute name="Default_Number_of_Records_to_Display" type="String" access="global"/>
+	<aura:attribute name="Max_Number_of_Records_to_Display" type="String" access="global"/>
+    <aura:attribute name="Title" type="String" access="global" />
+    <aura:attribute name="Icon_Name" type="String" access="global" />
+    <aura:attribute name="New_Record" type="String" access="global" />
+    <aura:attribute name="Default_Record_Type" type="String" access="global" />
+    <aura:attribute name="Show_Header" type="Boolean" access="global" />
+    <aura:attribute name="Show_Refresh_Button" type="Boolean" access="global" />
+    <aura:attribute name="Show_Menu_Action" type="Boolean" access="global" />
+    <aura:attribute name="Hide_On_No_Record" type="Boolean" access="global" />
+    
+    <!-- lightning data service to get current record details -->
+    <aura:attribute name="record" type="Object" 
+  		description="The record object to be displayed"/>
+	<aura:attribute name="simpleRecord" type="Object" 
+  		description="A simplified view record object to be displayed"/>
+	<aura:attribute name="recordError" type="String" 
+  		description="An error message bound to force:recordData"/>
+	<force:recordData aura:id="recordLoader"
+    	recordId="{!v.recordId}"
+        layoutType="FULL"
+    	targetError="{!v.recordError}"
+    	targetRecord="{!v.record}"
+    	targetFields ="{!v.simpleRecord}"
+        recordUpdated="{!c.recordUpdated}"
+    	/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.relatedRecordId}" action="{!c.doInit}"/>
+    
+	<!-- Display Lightning Data Service errors, if any -->
+	<aura:if isTrue="{!not(empty(v.recordError))}">
+    	<div class="recordError">
+        	{!v.recordError}</div>
+	</aura:if>
+    
+   
+        
+          
+    <aura:if isTrue="{!or(not(empty(v.relatedRecordId)),v.Base_Record == 'Current Record')}">
+
+    <CMTD:EnhancedRelatedList objectAPIName="{!v.Object_API_Name}" 
+                              relatedListName="{!v.Related_List_Name}"
+                              parentField="{!v.Parent_Field}" 
+                              parentId="{!v.Base_Record == 'Current Record' ? v.recordId : v.relatedRecordId}"
+                              displayType="{!v.Records_Display_Type}"
+                              layoutType="{!v.Records_Layout_Type}"
+                              filter= "{!v.Filter}"
+                              sort= "{!v.Sort}"
+                              defaultNumberofRecordstoDisplay= "{!v.Default_Number_of_Records_to_Display}"
+							  maxNumberofRecordstoDisplay= "{!v.Default_Number_of_Records_to_Display}"
+                              title= "{!v.Title}"
+                              iconName= "{!v.Icon_Name}"
+                              newRecord= "{!v.New_Record}"
+                              defaultRecordType= "{!v.Default_Record_Type}"
+                              showHeader= "{!v.Show_Header}"
+                              showRefreshButton= "{!v.Show_Refresh_Button}"
+                              showMenuAction= "{!v.Show_Menu_Action}"
+                              hideOnNoRecord= "{!v.Hide_On_No_Record}"
+                              />
+    </aura:if>
+
+</aura:component>
