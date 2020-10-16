@@ -1,0 +1,21 @@
+<design:component>
+	<design:attribute name="Base_Record" label="Base Record" required="true" datasource="Current Record, Related Record" default="Current Record" />
+    <design:attribute name="Related_Record_ID" label="Related Record Field API Name" description="Specify relationship field if using a Related Record as base" />
+    <design:attribute name="Object_API_Name" label="Object API Name" required="true" />
+    <design:attribute name="Related_List_Name" label="Metadata Related List Name" required="true" />
+    <design:attribute name="Parent_Field" label="Parent Field on Child" required="true" />
+    <design:attribute name="Records_Display_Type" label="Records Display Type" datasource="List, Tile 1, Tile 2" default="List" />
+    <design:attribute name="Fields_Layout_Type" label="Fields Layout Type" datasource="1 Column, 2 Columns" default="1 Column" />
+    <design:attribute name="Filter" label="Filter" />
+    <design:attribute name="Sort" label="Sort" default="CreatedDate DESC" />
+    <design:attribute name="Default_Number_of_Records_to_Display" label="Default Number of Records to Display" default="6"/>
+	<design:attribute name="Max_Number_of_Records_to_Display" label="Max Number of Records to Display" default="500"/>
+    <design:attribute name="Title" label="Title" />
+    <design:attribute name="Icon_Name" label="Icon_Name" default="standard:case" />
+    <design:attribute name="New_Record" label="New Record" default="Standard" />
+    <design:attribute name="Default_Record_Type" label="Default Record Type" />
+    <design:attribute name="Show_Header" label="Show Header?" />
+    <design:attribute name="Show_Refresh_Button" label="Show Refresh Button?" />
+    <design:attribute name="Show_Menu_Action" label="Show Row Menu Action?" />
+    <design:attribute name="Hide_On_No_Record" label="Hide the table if no records are found" />
+</design:component>
